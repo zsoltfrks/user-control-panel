@@ -1,11 +1,14 @@
 package com.ucp.backend.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class WarningDTO {
     private Long id;
     private Long userId;
