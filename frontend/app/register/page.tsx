@@ -43,19 +43,22 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gambit_grey1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
             UCP - Register
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-gambit_lightgrey">
             Create a new account
           </p>
         </div>
-        <form className="mt-8 space-y-6 bg-white p-8 rounded-lg shadow" onSubmit={handleSubmit}>
+        <form className="mt-8 space-y-6 bg-gambit_grey2 p-8 rounded-xl shadow-2xl border border-gambit_grey3/50" onSubmit={handleSubmit}>
           {error && (
-            <div className="bg-red-50 border border-red-400 text-red-700 px-4 py-3 rounded">
+            <div className="bg-gambit_red/10 border border-gambit_red text-gambit_red px-4 py-3 rounded flex items-center gap-2">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
               {error}
             </div>
           )}
@@ -92,13 +95,13 @@ export default function RegisterPage() {
             required
           />
 
-          <Button type="submit" className="w-full" disabled={loading}>
+          <Button type="submit" className="w-full bg-gambit_purple hover:bg-gambit_purple-second text-white font-bold py-3 rounded-lg shadow-lg transform transition-all hover:scale-[1.02]" disabled={loading}>
             {loading ? 'Creating account...' : 'Register'}
           </Button>
 
-          <div className="text-center mt-4">
-            <Link href="/login" className="text-indigo-600 hover:text-indigo-500">
-              Already have an account? Sign In
+          <div className="text-center mt-6">
+            <Link href="/login" className="text-gray-400 hover:text-white text-sm transition-colors">
+              Already have an account? <span className="text-gambit_purple hover:text-gambit_purple-second font-medium">Sign In</span>
             </Link>
           </div>
         </form>

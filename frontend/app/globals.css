@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: rgb(26, 27, 31);
+  --background: #1a1b1f;
   --foreground: #171717;
 }
 
@@ -11,6 +11,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
+  --color-gambit_black1: rgb(17 17 20);
   --color-gambit_grey1: rgb(26 27 31);
   --color-gambit_grey2: rgb(35 39 42);
   --color-gambit_grey3: rgb(51 53 61);
@@ -33,7 +34,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: rgb(26, 27, 31);
+    --background: #1a1b1f;
     --foreground: #ededed;
   }
 }

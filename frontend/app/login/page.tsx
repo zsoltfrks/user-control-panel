@@ -34,22 +34,30 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gambit_grey1 flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
             UCP - Sign In
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-gray-400">
             Sign in to your account
           </p>
         </div>
-        <form className="mt-8 space-y-6 bg-white p-8 rounded-lg shadow" onSubmit={handleSubmit}>
-          {error && (
-            <div className="bg-red-50 border border-red-400 text-red-700 px-4 py-3 rounded">
-              {error}
-            </div>
-          )}
+        {error && (
+        <div className="max-w-md w-full mb-6 bg-gambit_red text-white px-4 py-3 rounded relative shadow-lg flex justify-between items-center animate-fade-in">
+          <span className="font-medium">{error}</span>
+          <button 
+            onClick={() => setError('')}
+            className="text-white/80 hover:text-white focus:outline-none transition-colors"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      )}
+        <form className="mt-8 space-y-6 bg-gambit_black1 p-8 rounded-xl shadow-2xl border border-gambit_black1/50" onSubmit={handleSubmit}>
           
           <Input
             label="Username"
@@ -57,6 +65,13 @@ export default function LoginPage() {
             value={formData.username}
             onChange={(e) => setFormData({ ...formData, username: e.target.value })}
             required
+            className="bg-gambit_grey4 border-gambit_grey3 text-white placeholder-gray-500 focus:border-gambit_purple focus:ring-1 focus:ring-gambit_purple transition-all"
+            labelClassName="text-gray-300 font-medium"
+            leftIcon={
+              <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            }
           />
 
           <Input
@@ -65,15 +80,26 @@ export default function LoginPage() {
             value={formData.password}
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             required
+            className="bg-gambit_grey4 border-gambit_grey3 text-white placeholder-gray-500 focus:border-gambit_purple focus:ring-1 focus:ring-gambit_purple transition-all"
+            labelClassName="text-gray-300 font-medium"
+            leftIcon={
+              <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            }
           />
 
-          <Button type="submit" className="w-full" disabled={loading}>
+          <Button 
+            type="submit" 
+            className="w-full bg-gambit_purple hover:bg-gambit_purple-second text-white font-bold py-3 rounded-lg shadow-lg transform transition-all hover:scale-[1.02] active:scale-[0.98]" 
+            disabled={loading}
+          >
             {loading ? 'Signing in...' : 'Sign In'}
           </Button>
 
-          <div className="text-center mt-4">
-            <Link href="/register" className="text-indigo-600 hover:text-indigo-500">
-              Don&apos;t have an account? Register
+          <div className="text-center mt-6">
+            <Link href="/register" className="text-gray-400 hover:text-white text-sm transition-colors">
+              Don&apos;t have an account? <span className="text-gambit_purple hover:text-gambit_purple-second font-medium">Register</span>
             </Link>
           </div>
         </form>

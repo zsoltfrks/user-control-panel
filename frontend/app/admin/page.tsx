@@ -70,29 +70,29 @@ export default function AdminPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen bg-gambit_grey1">
         <Navigation />
         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <p className="text-center">Loading...</p>
+          <p className="text-center text-white">Loading...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gambit_grey1">
       <Navigation />
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-6">Admin Panel</h1>
+        <h1 className="text-3xl font-bold text-white mb-6">Admin Panel</h1>
 
-        <div className="mb-6 border-b border-gray-200">
+        <div className="mb-6 border-b border-gambit_grey3">
           <nav className="-mb-px flex space-x-8">
             <button
               onClick={() => setActiveTab('users')}
               className={`py-4 px-1 border-b-2 font-medium text-sm ${
                 activeTab === 'users'
-                  ? 'border-indigo-500 text-indigo-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'border-gambit_purple text-gambit_purple'
+                  : 'border-transparent text-gambit_lightgrey hover:text-white hover:border-gambit_lightgrey'
               }`}
             >
               Users ({users.length})
@@ -101,8 +101,8 @@ export default function AdminPage() {
               onClick={() => setActiveTab('assets')}
               className={`py-4 px-1 border-b-2 font-medium text-sm ${
                 activeTab === 'assets'
-                  ? 'border-indigo-500 text-indigo-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'border-gambit_purple text-gambit_purple'
+                  : 'border-transparent text-gambit_lightgrey hover:text-white hover:border-gambit_lightgrey'
               }`}
             >
               Assets ({houses.length + vehicles.length})
@@ -111,8 +111,8 @@ export default function AdminPage() {
               onClick={() => setActiveTab('bans')}
               className={`py-4 px-1 border-b-2 font-medium text-sm ${
                 activeTab === 'bans'
-                  ? 'border-indigo-500 text-indigo-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'border-gambit_purple text-gambit_purple'
+                  : 'border-transparent text-gambit_lightgrey hover:text-white hover:border-gambit_lightgrey'
               }`}
             >
               Bans & Warnings ({bans.length + warnings.length})
@@ -123,22 +123,22 @@ export default function AdminPage() {
         {activeTab === 'users' && (
           <Card title="User Management">
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="min-w-full divide-y divide-gambit_grey3">
+                <thead className="bg-gambit_grey3">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Username</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Role</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gambit_lightgrey uppercase">Username</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gambit_lightgrey uppercase">Email</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gambit_lightgrey uppercase">Role</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gambit_lightgrey uppercase">Status</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gambit_lightgrey uppercase">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-gambit_grey2 divide-y divide-gambit_grey3">
                   {users.map((user) => (
                     <tr key={user.id}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{user.username}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.email}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.role}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{user.username}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gambit_lightgrey">{user.email}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gambit_lightgrey">{user.role}</td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                           user.active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
