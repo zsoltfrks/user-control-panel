@@ -23,14 +23,8 @@ export default function Navigation() {
       setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
 
-    const resetTimer = () => setTimeLeft(600);
-    window.addEventListener('click', resetTimer);
-    window.addEventListener('keydown', resetTimer);
-
     return () => {
       clearInterval(timer);
-      window.removeEventListener('click', resetTimer);
-      window.removeEventListener('keydown', resetTimer);
     };
   }, []);
 
@@ -140,7 +134,7 @@ export default function Navigation() {
                 Warning! Your session will expire soon: {Math.floor(timeLeft / 60)}:{timeLeft % 60 < 10 ? '0' : ''}{timeLeft % 60}!
               </p>
               <button
-                onClick={() => setTimeLeft(600)}
+                onClick={() => window.location.reload()}
                 className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-6 rounded transition-colors"
               >
                 Continue Session
