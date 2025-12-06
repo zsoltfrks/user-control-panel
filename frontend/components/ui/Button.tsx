@@ -12,7 +12,7 @@ export default function Button({
   const baseClasses = 'px-4 py-2 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50';
   
   const variantClasses = {
-    primary: 'bg-gambit_purple text-white hover:bg-gambit_purple-second focus:ring-gambit_purple',
+    primary: 'bg-gambit_berry text-white hover:bg-gambit_berry-second focus:ring-gambit_berry',
     secondary: 'bg-gambit_grey3 text-white hover:bg-gambit_midgrey focus:ring-gambit_midgrey',
     danger: 'bg-gambit_red text-white hover:bg-gambit_red-second focus:ring-gambit_red',
   };

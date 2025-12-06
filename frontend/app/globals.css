@@ -2,7 +2,7 @@
 
 :root {
   --background: #1a1b1f;
-  --foreground: #171717;
+  --foreground: #1a1b1f;
 }
 
 @theme inline {
@@ -11,11 +11,14 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
+  --color-gambit_berry: rgb(145 47 86);
+  --color-gambit_berry-second: rgb(130 47 81);
   --color-gambit_black1: rgb(17 17 20);
   --color-gambit_grey1: rgb(26 27 31);
   --color-gambit_grey2: rgb(35 39 42);
   --color-gambit_grey3: rgb(51 53 61);
   --color-gambit_grey4: rgb(30 33 36);
+  --color-gambit_horizontal: rgb(35 39 42);
   --color-gambit_midgrey: rgb(84 86 93);
   --color-gambit_lightgrey: rgb(186 190 196);
   --color-gambit_green: rgb(60 184 130);
@@ -35,7 +38,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #1a1b1f;
-    --foreground: #ededed;
+    --foreground: #1a1b1f;
   }
 }
 

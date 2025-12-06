@@ -2,10 +2,27 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { 
+  faUser, 
+  faInfoCircle, 
+  faHeartPulse, 
+  faCar, 
+  faHome, 
+  faKey, 
+  faPaw, 
+  faGun, 
+  faIdCard, 
+  faBan, 
+  faExclamationTriangle,
+  faBoxOpen,
+  faUserTag,
+  faBoxes
+} from '@fortawesome/free-solid-svg-icons';
 import { isAuthenticated } from '@/lib/auth';
 import { apiClient } from '@/lib/api';
 import Navigation from '@/components/layout/Navigation';
 import Card from '@/components/ui/Card';
+import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -66,7 +83,7 @@ export default function DashboardPage() {
           <div className="lg:col-span-1 space-y-6">
             
             {/* Character Image Card */}
-            <div className="bg-gambit_grey2 rounded-xl overflow-hidden shadow-lg border border-gambit_grey3/50">
+            <div className="bg-gambit_grey2 rounded-xl overflow-hidden shadow-lg">
               <div className="h-64 bg-gambit_grey4 flex items-center justify-center relative group">
                 {/* Placeholder for character image */}
                 <svg className="w-24 h-24 text-gambit_grey3" fill="currentColor" viewBox="0 0 24 24">
@@ -83,7 +100,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Character Stats */}
-            <Card title={profile?.characterName || 'Character Info'}>
+            <Card title={profile?.characterName || 'Character Info'} icon={faUser}>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between items-center">
                   <span className="text-gambit_lightgrey bg-gambit_grey4 px-2 py-1 rounded border border-gambit_grey3 text-xs font-bold uppercase tracking-wider">Character ID</span>
@@ -116,7 +133,7 @@ export default function DashboardPage() {
             </Card>
 
             {/* Account Info */}
-            <Card title={user?.username || 'Account Info'}>
+            <Card title={user?.username || 'Account Info'} icon={faInfoCircle}>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between items-center">
                   <span className="text-gambit_lightgrey bg-gambit_grey4 px-2 py-1 rounded border border-gambit_grey3 text-xs font-bold uppercase tracking-wider">Account ID</span>
@@ -145,7 +162,7 @@ export default function DashboardPage() {
             </Card>
 
             {/* Status */}
-            <Card title="Status">
+            <Card title="Status" icon={faBars}>
                <div className="space-y-4">
                   <div className="relative pt-1">
                     <div className="flex mb-2 items-center justify-between">
@@ -186,7 +203,7 @@ export default function DashboardPage() {
           <div className="lg:col-span-3 space-y-6">
             
             {/* Vehicles */}
-            <Card title={`Vehicles (${vehicles.length})`}>
+            <Card title={`Vehicles (${vehicles.length}/5)`} icon={faCar}>
               <div className="overflow-x-auto">
                 <table className="min-w-full text-sm">
                   <thead className="bg-gambit_grey4 text-gambit_lightgrey border-b border-gambit_grey3">
@@ -228,7 +245,7 @@ export default function DashboardPage() {
             </Card>
 
             {/* Interiors */}
-            <Card title={`Interiors (${houses.length})`}>
+            <Card title={`Interiors (${houses.length}/5)`} icon={faHome}>
                <div className="overflow-x-auto">
                 <table className="min-w-full text-sm">
                   <thead className="bg-gambit_grey4 text-gambit_lightgrey border-b border-gambit_grey3">
@@ -266,28 +283,28 @@ export default function DashboardPage() {
             </Card>
 
             {/* Rentals */}
-            <Card title="Rentals (0)">
-               <div className="px-4 py-8 text-center text-gambit_lightgrey italic text-sm border-t border-gambit_grey3">
+            <Card title="Rentals (0)" icon={faKey}>
+               <div className="px-4 py-8 text-center text-gambit_lightgrey italic text-sm">
                   <span className="inline-block mr-2">∅</span> No results found.
                </div>
             </Card>
 
             {/* Pets */}
-            <Card title="Pets (0)">
-               <div className="px-4 py-8 text-center text-gambit_lightgrey italic text-sm border-t border-gambit_grey3">
+            <Card title="Pets (0)" icon={faPaw}>
+               <div className="px-4 py-8 text-center text-gambit_lightgrey italic text-sm">
                   <span className="inline-block mr-2">∅</span> No results found.
                </div>
             </Card>
 
             {/* Weapon Skills */}
-            <Card title="Weapon Skills (0)">
-               <div className="px-4 py-8 text-center text-gambit_lightgrey italic text-sm border-t border-gambit_grey3">
+            <Card title="Weapon Skills" icon={faGun}>
+               <div className="px-4 py-8 text-center text-gambit_lightgrey italic text-sm">
                   <span className="inline-block mr-2">∅</span> No results found.
                </div>
             </Card>
 
             {/* Name Changes */}
-            <Card title="Name Changes (1)">
+            <Card title="Name Changes (1)" icon={faUserTag}>
                <div className="overflow-x-auto">
                 <table className="min-w-full text-sm">
                   <thead className="bg-gambit_grey4 text-gambit_lightgrey border-b border-gambit_grey3">
@@ -324,8 +341,8 @@ export default function DashboardPage() {
             </Card>
 
             {/* Inventory */}
-            <Card title="Inventory">
-               <div className="p-4 border-t border-gambit_grey3 flex justify-center">
+            <Card title="Inventory" icon={faBoxes}>
+               <div className="p-4 flex justify-center">
                   <div className="bg-gambit_grey4 p-2 rounded border border-gambit_grey3 inline-block">
                       <div className="flex gap-4 mb-2 justify-center text-gambit_lightgrey">
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
