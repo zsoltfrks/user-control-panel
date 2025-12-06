@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: rgb(26, 27, 31);
   --foreground: #171717;
 }
 
@@ -10,11 +10,30 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --color-gambit_grey1: rgb(26 27 31);
+  --color-gambit_grey2: rgb(35 39 42);
+  --color-gambit_grey3: rgb(51 53 61);
+  --color-gambit_grey4: rgb(30 33 36);
+  --color-gambit_midgrey: rgb(84 86 93);
+  --color-gambit_lightgrey: rgb(186 190 196);
+  --color-gambit_green: rgb(60 184 130);
+  --color-gambit_green-second: rgb(60 184 170);
+  --color-gambit_red: rgb(243 90 90);
+  --color-gambit_red-second: rgb(250 120 95);
+  --color-gambit_blue: rgb(49 154 215);
+  --color-gambit_blue-second: rgb(49 180 225);
+  --color-gambit_yellow: rgb(243 214 90);
+  --color-gambit_yellow-second: rgb(250 240 130);
+  --color-gambit_orange: rgb(255 149 20);
+  --color-gambit_orange-second: rgb(250 179 40);
+  --color-gambit_purple: rgb(148 60 184);
+  --color-gambit_purple-second: rgb(182 76 226);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: rgb(26, 27, 31);
     --foreground: #ededed;
   }
 }

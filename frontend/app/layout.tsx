@@ -8,7 +8,7 @@ const ubuntu = Ubuntu({
 });
 
 export const metadata: Metadata = {
-  title: "UCP - Game Server Dashboard",
+  title: "Gambit UCP",
   description: "User Control Panel for game server management",
 };
 
