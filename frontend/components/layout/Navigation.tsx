@@ -104,46 +104,46 @@ export default function Navigation() {
                 <div className="absolute right-0 top-full w-56 bg-gambit_black1 rounded-b-md shadow-xl py-2 z-50 border border-gambit_grey3/50">
                   <Link
                     href="/dashboard"
-                    className="flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gambit_grey3 transition-colors"
+                    className="flex items-center px-4 py-2 text-sm text-gray-300 text-glow-hover transition-colors"
                     onClick={() => setIsDropdownOpen(false)}
                   >
-                    <FontAwesomeIcon icon={faUser} className="w-4 h-4 mr-3 text-gray-400" />
+                    <FontAwesomeIcon icon={faUser} className="w-4 h-4 mr-3" />
                     Profile
                   </Link>
 
                   <div className="border-t border-gambit_grey3/50 my-1 mx-2"></div>
 
                   <button
-                    className="w-full flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gambit_grey3 transition-colors text-left"
+                    className="w-full flex items-center px-4 py-2 text-sm text-gray-300 text-glow-hover transition-colors text-left"
                   >
-                    <FontAwesomeIcon icon={faDatabase} className="w-4 h-4 mr-3 text-gray-400" />
+                    <FontAwesomeIcon icon={faDatabase} className="w-4 h-4 mr-3" />
                     Change serial
                   </button>
                   <button
-                    className="w-full flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gambit_grey3 transition-colors text-left"
+                    className="w-full flex items-center px-4 py-2 text-sm text-gray-300 text-glow-hover transition-colors text-left"
                   >
-                    <FontAwesomeIcon icon={faIdCard} className="w-4 h-4 mr-3 text-gray-400" />
+                    <FontAwesomeIcon icon={faIdCard} className="w-4 h-4 mr-3" />
                     Change name
                   </button>
                   <button
-                    className="w-full flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gambit_grey3 transition-colors text-left"
+                    className="w-full flex items-center px-4 py-2 text-sm text-gray-300 text-glow-hover transition-colors text-left"
                   >
-                    <FontAwesomeIcon icon={faKey} className="w-4 h-4 mr-3 text-gray-400" />
+                    <FontAwesomeIcon icon={faKey} className="w-4 h-4 mr-3" />
                     Change password
                   </button>
                   
                   <div className="border-t border-gambit_grey3/50 my-1 mx-2"></div>
                   
                   <button
-                    className="w-full flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gambit_grey3 transition-colors text-left"
+                    className="w-full flex items-center px-4 py-2 text-sm text-gray-300 text-glow-hover transition-colors text-left"
                   >
-                    <FontAwesomeIcon icon={faFileLines} className="w-4 h-4 mr-3 text-gray-400" />
-                    Tickets
+                    <FontAwesomeIcon icon={faFileLines} className="w-4 h-4 mr-3" />
+                    Reports
                   </button>
                   <button
-                    className="w-full flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gambit_grey3 transition-colors text-left"
+                    className="w-full flex items-center px-4 py-2 text-sm text-gray-300 text-glow-hover transition-colors text-left"
                   >
-                    <FontAwesomeIcon icon={faShieldHalved} className="w-4 h-4 mr-3 text-gray-400" />
+                    <FontAwesomeIcon icon={faShieldHalved} className="w-4 h-4 mr-3" />
                     Enable 2FA
                   </button>
 
@@ -151,10 +151,10 @@ export default function Navigation() {
 
                   <button
                     onClick={handleLogout}
-                    className="w-full flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gambit_grey3 transition-colors text-left"
+                    className="w-full flex items-center px-4 py-2 text-sm text-gray-300 text-glow-hover transition-colors text-left"
                   >
-                    <FontAwesomeIcon icon={faSignOutAlt} className="w-4 h-4 mr-3 text-gray-400" />
-                    Kijelentkezés
+                    <FontAwesomeIcon icon={faSignOutAlt} className="w-4 h-4 mr-3" />
+                    Sign out
                   </button>
                 </div>
               )}

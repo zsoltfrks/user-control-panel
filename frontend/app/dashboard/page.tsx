@@ -16,7 +16,9 @@ import {
   faExclamationTriangle,
   faBoxOpen,
   faUserTag,
-  faBoxes
+  faBoxes,
+  faBuilding,
+  faWarehouse
 } from '@fortawesome/free-solid-svg-icons';
 import { isAuthenticated } from '@/lib/auth';
 import { apiClient } from '@/lib/api';
@@ -245,7 +247,7 @@ export default function DashboardPage() {
             </Card>
 
             {/* Interiors */}
-            <Card title={`Interiors (${houses.length}/5)`} icon={faHome}>
+            <Card title={`Interiors (${houses.length}/5)`} icon={faBuilding}>
                <div className="overflow-x-auto">
                 <table className="min-w-full text-sm">
                   <thead className="bg-gambit_grey4 text-gambit_lightgrey border-b border-gambit_grey3">
@@ -283,7 +285,7 @@ export default function DashboardPage() {
             </Card>
 
             {/* Rentals */}
-            <Card title="Rentals (0)" icon={faKey}>
+            <Card title="Rentals (0)" icon={faWarehouse}>
                <div className="px-4 py-8 text-center text-gambit_lightgrey italic text-sm">
                   <span className="inline-block mr-2">∅</span> No results found.
                </div>
