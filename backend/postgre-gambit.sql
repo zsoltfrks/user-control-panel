@@ -1489,11 +1489,3 @@ INSERT INTO "items" ("dbID", "slot", "itemId", "amount", "data1", "data2", "data
 INSERT INTO "licenses" ("dbID", "characterId", "type", "issueDate", "expiryDate", "status", "points") VALUES
 (1, 1, 'driver', 1609459200, 1767225600, 1, 0),
 (2, 2, 'driver', 1609459200, 1767225600, 1, 0);
-
--- Update sequence values to account for dummy data
-ALTER SEQUENCE "accounts_accountId_seq" RESTART WITH 3;
-ALTER SEQUENCE "characters_characterId_seq" RESTART WITH 3;
-ALTER SEQUENCE "vehicles_dbID_seq" RESTART WITH 3;
-ALTER SEQUENCE "interiors_interiorId_seq" RESTART WITH 3;
-ALTER SEQUENCE "items_dbID_seq" RESTART WITH 9;
-ALTER SEQUENCE "licenses_dbID_seq" RESTART WITH 3;
