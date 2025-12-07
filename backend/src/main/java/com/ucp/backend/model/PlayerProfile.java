@@ -37,6 +37,10 @@ public class PlayerProfile {
     
     @Column(name = "last_login")
     private LocalDateTime lastLogin;
+
+    @Lob
+    @Column(name = "profile_image")
+    private byte[] profileImage;
     
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();

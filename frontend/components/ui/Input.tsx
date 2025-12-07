@@ -1,5 +1,5 @@
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   error?: string;
   leftIcon?: React.ReactNode;
   labelClassName?: string;
@@ -8,9 +8,11 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export default function Input({ label, error, leftIcon, labelClassName = 'text-gambit_lightgrey', className = '', ...props }: InputProps) {
   return (
     <div className="mb-4">
-      <label className={`block text-sm font-medium mb-1 ${labelClassName}`}>
-        {label}
-      </label>
+      {label && (
+        <label className={`block text-sm font-medium mb-1 ${labelClassName}`}>
+          {label}
+        </label>
+      )}
       <div className="relative">
         {leftIcon && (
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gambit_midgrey">

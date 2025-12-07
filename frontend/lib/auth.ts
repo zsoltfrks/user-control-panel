@@ -44,9 +44,8 @@ export const isAuthenticated = (): boolean => {
 };
 
 export const isAdmin = (): boolean => {
-  // const role = getRole();
-  // return role === 'ADMIN' || role === 'LEAD_ADMIN';
-  return true; // For development
+  const role = getRole();
+  return role === 'ADMIN' || role === 'LEAD_ADMIN';
 };
 
 export const isLeadAdmin = (): boolean => {

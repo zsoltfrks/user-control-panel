@@ -72,7 +72,7 @@ export default function AdminPage() {
     return (
       <div className="min-h-screen bg-gambit_grey1">
         <Navigation />
-        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div className="max-w-[1380px] mx-auto py-6 sm:px-6 lg:px-8">
           <p className="text-center text-white">Loading...</p>
         </div>
       </div>
@@ -82,7 +82,7 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-gambit_grey1">
       <Navigation />
-      <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <div className="max-w-[1380px] mx-auto py-6 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-white mb-6">Admin Panel</h1>
 
         <div className="mb-6 border-b border-gambit_grey3">

@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Font Awesome 6 Pro';
+  src: url('/fonts/fa-pro-solid.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-fa-pro {
+  font-family: 'Font Awesome 6 Pro', sans-serif;
+}
+
 :root {
   --background: #1a1b1f;
   --foreground: #1a1b1f;

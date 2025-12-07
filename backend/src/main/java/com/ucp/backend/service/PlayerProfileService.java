@@ -64,6 +64,12 @@ public class PlayerProfileService {
         profile.setLastLogin(LocalDateTime.now());
         playerProfileRepository.save(profile);
     }
+
+    public byte[] getProfileImage(Long id) {
+        PlayerProfile profile = playerProfileRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Profile not found"));
+        return profile.getProfileImage();
+    }
     
     private PlayerProfileDTO convertToDTO(PlayerProfile profile) {
         PlayerProfileDTO dto = new PlayerProfileDTO();
@@ -75,6 +81,7 @@ public class PlayerProfileService {
         dto.setMoney(profile.getMoney());
         dto.setPlayedHours(profile.getPlayedHours());
         dto.setLastLogin(profile.getLastLogin());
+        dto.setProfileImageUrl("/api/profiles/" + profile.getId() + "/image");
         dto.setHousesCount(profile.getHouses().size());
         dto.setVehiclesCount(profile.getVehicles().size());
         return dto;

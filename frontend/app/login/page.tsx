@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faLock, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faLock, faTimes, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { apiClient } from '@/lib/api';
 import { saveAuth } from '@/lib/auth';
 import Input from '@/components/ui/Input';
@@ -81,16 +81,23 @@ export default function LoginPage() {
             className="bg-gambit_grey4 border-gambit_grey3 text-white placeholder-gray-500 focus:border-gambit_purple focus:ring-1 focus:ring-gambit_purple transition-all"
             labelClassName="text-gray-300 font-medium"
             leftIcon={
-              <FontAwesomeIcon icon={faLock} className="w-5 h-5 text-gambit_berry" />
+              <FontAwesomeIcon icon={faLock} className="w-5 h-5 text-gray-400" />
             }
           />
 
           <Button 
             type="submit" 
-            className="w-full bg-gambit_berry hover:bg-gambit_berry-second text-white font-bold py-3 rounded-lg shadow-lg transform transition-all active:scale-[0.98]" 
+            className="w-full bg-gambit_berry hover:bg-gambit_berry-second text-white font-bold py-3 rounded-lg shadow-lg transform transition-all active:scale-[0.98] flex items-center justify-center gap-2" 
             disabled={loading}
           >
-            {loading ? 'Signing in...' : 'Sign In'}
+            {loading ? (
+              'Signing in...'
+            ) : (
+              <>
+                <FontAwesomeIcon icon={faRightToBracket} />
+                Sign In
+              </>
+            )}
           </Button>
 
           <div className="text-center mt-6">

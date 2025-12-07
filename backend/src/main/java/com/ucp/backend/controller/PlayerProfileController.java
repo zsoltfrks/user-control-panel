@@ -4,6 +4,7 @@ import com.ucp.backend.dto.PlayerProfileDTO;
 import com.ucp.backend.service.PlayerProfileService;
 import com.ucp.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -41,5 +42,14 @@ public class PlayerProfileController {
     @PreAuthorize("hasAnyRole('ADMIN', 'LEAD_ADMIN')")
     public ResponseEntity<PlayerProfileDTO> updateProfile(@PathVariable Long id, @RequestBody PlayerProfileDTO dto) {
         return ResponseEntity.ok(playerProfileService.updateProfile(id, dto));
+    }
+
+    @GetMapping(value = "/{id}/image", produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> getProfileImage(@PathVariable Long id) {
+        byte[] image = playerProfileService.getProfileImage(id);
+        if (image == null || image.length == 0) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
     }
 }

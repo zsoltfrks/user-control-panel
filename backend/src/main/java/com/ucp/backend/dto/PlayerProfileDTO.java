@@ -18,6 +18,7 @@ public class PlayerProfileDTO {
     private Long money;
     private Integer playedHours;
     private LocalDateTime lastLogin;
+    private String profileImageUrl;
     private Integer housesCount;
     private Integer vehiclesCount;
 }
