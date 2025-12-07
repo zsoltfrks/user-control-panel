@@ -25,7 +25,7 @@ CREATE TABLE "accounts" (
   "osvenyPrioExperie" INTEGER NOT NULL DEFAULT 0,
   "2fa" varchar(24) DEFAULT NULL,
   "2fastate" INTEGER NOT NULL DEFAULT 0,
-  "discordId" bigINTEGER DEFAULT NULL,
+  "discordId" BIGINT DEFAULT NULL,
   "discordAuth" varchar(24) DEFAULT NULL,
   "discordName" varchar(124) DEFAULT NULL,
   "adminJailType" INTEGER DEFAULT NULL,
@@ -184,7 +184,7 @@ CREATE TABLE "companies" (
   "createdBy" text NOT NULL,
   "books" text NOT NULL,
   "prefix" text NOT NULL,
-  "created" bigINTEGER NOT NULL
+  "created" BIGINT NOT NULL
 );
 
 --
@@ -306,9 +306,9 @@ CREATE TABLE "groupmembers" (
   "groupPrefix" varchar(32) NOT NULL,
   "rank" INTEGER NOT NULL DEFAULT 1,
   "isLeader" INTEGER NOT NULL DEFAULT 0,
-  "added" bigINTEGER NOT NULL DEFAULT 0,
-  "promoted" bigINTEGER NOT NULL DEFAULT 0,
-  "lastOnline" bigINTEGER NOT NULL DEFAULT 0
+  "added" BIGINT NOT NULL DEFAULT 0,
+  "promoted" BIGINT NOT NULL DEFAULT 0,
+  "lastOnline" BIGINT NOT NULL DEFAULT 0
 );
 
 --
@@ -368,7 +368,7 @@ CREATE TABLE "groups" (
   "vehicleMembers" TEXT  NOT NULL DEFAULT '[ [ ] ]' ,
   "interiorMembers" TEXT  NOT NULL DEFAULT '[ [ ] ]' ,
   "motd" text NOT NULL DEFAULT 'Leírás',
-  "balance" bigINTEGER NOT NULL DEFAULT 0,
+  "balance" BIGINT NOT NULL DEFAULT 0,
   "aid" INTEGER NOT NULL DEFAULT 0,
   "tax" INTEGER NOT NULL DEFAULT 0
 );
@@ -505,6 +505,28 @@ CREATE TABLE "items" (
 
 --
 -- A tábla adatainak kiíratása "items"
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához "licenses"
+--
+
+DROP TABLE IF EXISTS "licenses" CASCADE;
+CREATE TABLE "licenses" (
+  "dbID" SERIAL,
+  "characterId" INTEGER NOT NULL,
+  "type" varchar(32) NOT NULL,
+  "issueDate" BIGINT NOT NULL DEFAULT 0,
+  "expiryDate" BIGINT NOT NULL DEFAULT 0,
+  "status" INTEGER NOT NULL DEFAULT 1,
+  "points" INTEGER NOT NULL DEFAULT 0
+);
+
+--
+-- A tábla adatainak kiíratása "licenses"
 --
 
 
@@ -652,7 +674,7 @@ CREATE TABLE "peds" (
   "dimension" INTEGER NOT NULL,
   "skin" INTEGER NOT NULL,
   "name" varchar(32) NOT NULL DEFAULT 'PED',
-  "balance" bigINTEGER NOT NULL DEFAULT 0,
+  "balance" BIGINT NOT NULL DEFAULT 0,
   "selectedItems" TEXT NOT NULL,
   "categories" TEXT NOT NULL,
   "pedPrice" TEXT NOT NULL,
@@ -797,7 +819,7 @@ DROP TABLE IF EXISTS "priorities" CASCADE;
 CREATE TABLE "priorities" (
   "dbID" INTEGER NOT NULL,
   "prioType" INTEGER NOT NULL,
-  "expireTimestamp" bigINTEGER NOT NULL,
+  "expireTimestamp" BIGINT NOT NULL,
   "serial" varchar(32) NOT NULL
 );
 
@@ -857,7 +879,7 @@ CREATE TABLE "tickets" (
   "reason" text NOT NULL,
   "offenderId" INTEGER NOT NULL,
   "offenderName" text NOT NULL,
-  "ticketDate" bigINTEGER NOT NULL,
+  "ticketDate" BIGINT NOT NULL,
   "ticketBy" text NOT NULL,
   "ticketPlace" text NOT NULL,
   "ticketGroup" text NOT NULL
@@ -996,7 +1018,7 @@ CREATE TABLE "vehicles" (
   "panelStates" TEXT  NOT NULL DEFAULT '[ [ 0, 0, 0, 0, 0, 0 ] ]' ,
   "plate" varchar(8) DEFAULT NULL,
   "customPlate" varchar(8) DEFAULT NULL,
-  "protected" bigINTEGER DEFAULT NULL,
+  "protected" BIGINT DEFAULT NULL,
   "fuelType" text DEFAULT NULL,
   "supercharger" INTEGER NOT NULL DEFAULT 0,
   "automaticShifter" INTEGER NOT NULL DEFAULT 0
@@ -1386,11 +1408,6 @@ ALTER TABLE "vehicles"
 
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
 -- Sequence Restarts
 ALTER SEQUENCE "accounts_accountId_seq" RESTART WITH 29;
 ALTER SEQUENCE "animals_animalId_seq" RESTART WITH 9;
@@ -1421,3 +1438,54 @@ ALTER SEQUENCE "trashes_databaseId_seq" RESTART WITH 94;
 ALTER SEQUENCE "undoneprocesses_connect_id_seq" RESTART WITH 6;
 ALTER SEQUENCE "undoneprocesses_main_id_seq" RESTART WITH 6;
 ALTER SEQUENCE "vehicles_dbID_seq" RESTART WITH 10;
+-- ============================================================
+-- DUMMY DATA FOR TESTING
+-- ============================================================
+
+--
+-- Dummy Accounts (2 accounts: 1 Admin, 1 regular User)
+--
+INSERT INTO "accounts" ("accountId", "username", "password", "suspended", "serial", "email", "maxCharacters", "adminLevel", "adminNick", "helperLevel", "premiumPoints", "osvenyPiro", "osvenyPrioExperie", "2fa", "2fastate", "discordId", "discordAuth", "discordName", "adminJailType", "adminJailBy", "adminJailTime", "adminJailReason") VALUES
+(1, 'admin_user', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 0, 'ADMIN001', 'admin@example.com', 3, 10, 'SuperAdmin', 0, 1000, 0, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'test_user', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 0, 'USER001', 'user@example.com', 2, 0, 'User', 0, 100, 0, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+--
+-- Dummy Characters (1 for each account)
+--
+INSERT INTO "characters" ("characterId", "accountId", "name", "skin", "permGroupSkin", "creationStage", "canSkipCreation", "x", "y", "z", "r", "interior", "dimension", "money", "bankMoney", "playedMinutes", "inDeath", "coins", "boughtClothes", "clothesPos", "clothesLimit", "health", "armor", "hunger", "thirst", "lastOnline", "actionBarItems", "skills", "weaponPos", "armors", "inDuty", "online", "vehiclesSlot", "interiorsSlot", "facePaint", "playerRecipes", "radioFreq", "jail", "jailTime", "jailReason", "jailCell") VALUES
+(1, 1, 'John Admin', 0, 'N', 5, 0, 1682.7392578125, -2328.7177734375, 13.546875, 0, 0, 0, 100000, 50000, 120, 0, 500, '[[]]', '''[[]]''', 5, 100, 100, 100, 100, CURRENT_TIMESTAMP, '[[1,2,3,4,5]]', '[[]]', '[[]]', '[[]]', '""', 0, 5, 5, 0, '[[]]', '[[0, 0]]', 0, 0, NULL, 0),
+(2, 2, 'Jane Player', 1, 'N', 5, 0, 1682.7392578125, -2328.7177734375, 13.546875, 0, 0, 0, 50000, 10000, 60, 0, 50, '[[]]', '''[[]]''', 2, 100, 0, 100, 100, CURRENT_TIMESTAMP, '[[1,2,3,4,5]]', '[[]]', '[[]]', '[[]]', '""', 0, 2, 2, 0, '[[]]', '[[0, 0]]', 0, 0, NULL, 0);
+
+--
+-- Dummy Vehicles (2 vehicles owned by characters)
+--
+INSERT INTO "vehicles" ("dbID", "characterId", "modelId", "health", "position", "parkPosition", "rotation", "color", "fuel", "oil", "locked", "plate") VALUES
+(1, 1, 411, 1000, '[[1682.7, -2328.7, 13.5, 0, 0]]', '[[1682.7, -2328.7, 13.5, 0, 0]]', '[[0, 0, 0]]', '[[255, 0, 0, 255, 0, 0, 255, 255, 255, 255, 255, 255]]', 100, 1000, 1, 'ADM1N01'),
+(2, 2, 562, 1000, '[[1682.7, -2320.7, 13.5, 0, 0]]', '[[1682.7, -2320.7, 13.5, 0, 0]]', '[[0, 0, 0]]', '[[0, 0, 255, 0, 0, 255, 255, 255, 255, 255, 255, 255]]', 80, 1000, 1, 'USR0001');
+
+--
+-- Dummy Interiors (2 properties owned by characters)
+--
+INSERT INTO "interiors" ("interiorId", "outside", "inside", "name", "type", "ownerType", "owner", "locked", "price", "gameInterior", "policeLock", "policeLockBy", "policeLockGroup") VALUES
+(1, '[[1682.7, -2328.7, 13.5, 0]]', '[[2196.85, -1204.36, 1049.02, 0]]', 'Admin House', 'house', 'player', '1', 0, 150000, 6, 'N', '', ''),
+(2, '[[1682.7, -2320.7, 13.5, 0]]', '[[2196.85, -1204.36, 1049.02, 0]]', 'User House', 'house', 'player', '2', 0, 100000, 6, 'N', '', '');
+
+--
+-- Dummy Items (basic inventory items for characters)
+--
+INSERT INTO "items" ("dbID", "slot", "itemId", "amount", "data1", "data2", "data3", "nameTag", "serial", "ownerType", "ownerId") VALUES
+(1, 1, 1, 1, NULL, NULL, NULL, 'Phone', 1001, 'character', 1),
+(2, 2, 2, 1, NULL, NULL, NULL, 'Wallet', 1002, 'character', 1),
+(3, 3, 10, 5, NULL, NULL, NULL, 'Sandwich', 1003, 'character', 1),
+(4, 4, 11, 3, NULL, NULL, NULL, 'Water Bottle', 1004, 'character', 1),
+(5, 1, 1, 1, NULL, NULL, NULL, 'Phone', 2001, 'character', 2),
+(6, 2, 2, 1, NULL, NULL, NULL, 'Wallet', 2002, 'character', 2),
+(7, 3, 10, 2, NULL, NULL, NULL, 'Sandwich', 2003, 'character', 2),
+(8, 4, 11, 2, NULL, NULL, NULL, 'Water Bottle', 2004, 'character', 2);
+
+--
+-- Dummy Licenses (driver licenses for characters)
+--
+INSERT INTO "licenses" ("dbID", "characterId", "type", "issueDate", "expiryDate", "status", "points") VALUES
+(1, 1, 'driver', 1609459200, 1767225600, 1, 0),
+(2, 2, 'driver', 1609459200, 1767225600, 1, 0);

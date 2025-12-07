@@ -1,0 +1,11 @@
+# Docker Compose Override Example
+# Copy this file to docker-compose.override.yml for local development
+# NEVER commit docker-compose.override.yml to version control
+
+services:
+  postgres:
+    environment:
+      # Override with secure credentials
+      POSTGRES_PASSWORD: your-secure-password-here
+      POSTGRES_USER: your-username-here
+      POSTGRES_DB: your-database-name-here
