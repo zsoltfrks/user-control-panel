@@ -81,7 +81,13 @@ public class PlayerProfileService {
         dto.setMoney(profile.getMoney());
         dto.setPlayedHours(profile.getPlayedHours());
         dto.setLastLogin(profile.getLastLogin());
-        dto.setProfileImageUrl("/api/profiles/" + profile.getId() + "/image");
+        
+        if (profile.getProfileImage() != null && profile.getProfileImage().length > 0) {
+            dto.setProfileImageUrl("/api/profiles/" + profile.getId() + "/image");
+        } else {
+            dto.setProfileImageUrl(null);
+        }
+        
         dto.setHousesCount(profile.getHouses().size());
         dto.setVehiclesCount(profile.getVehicles().size());
         return dto;
