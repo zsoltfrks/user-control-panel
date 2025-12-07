@@ -25,7 +25,7 @@ CREATE TABLE "accounts" (
   "osvenyPrioExperie" INTEGER NOT NULL DEFAULT 0,
   "2fa" varchar(24) DEFAULT NULL,
   "2fastate" INTEGER NOT NULL DEFAULT 0,
-  "discordId" bigINTEGER DEFAULT NULL,
+  "discordId" BIGINT DEFAULT NULL,
   "discordAuth" varchar(24) DEFAULT NULL,
   "discordName" varchar(124) DEFAULT NULL,
   "adminJailType" INTEGER DEFAULT NULL,
@@ -184,7 +184,7 @@ CREATE TABLE "companies" (
   "createdBy" text NOT NULL,
   "books" text NOT NULL,
   "prefix" text NOT NULL,
-  "created" bigINTEGER NOT NULL
+  "created" BIGINT NOT NULL
 );
 
 --
@@ -306,9 +306,9 @@ CREATE TABLE "groupmembers" (
   "groupPrefix" varchar(32) NOT NULL,
   "rank" INTEGER NOT NULL DEFAULT 1,
   "isLeader" INTEGER NOT NULL DEFAULT 0,
-  "added" bigINTEGER NOT NULL DEFAULT 0,
-  "promoted" bigINTEGER NOT NULL DEFAULT 0,
-  "lastOnline" bigINTEGER NOT NULL DEFAULT 0
+  "added" BIGINT NOT NULL DEFAULT 0,
+  "promoted" BIGINT NOT NULL DEFAULT 0,
+  "lastOnline" BIGINT NOT NULL DEFAULT 0
 );
 
 --
@@ -368,7 +368,7 @@ CREATE TABLE "groups" (
   "vehicleMembers" TEXT  NOT NULL DEFAULT '[ [ ] ]' ,
   "interiorMembers" TEXT  NOT NULL DEFAULT '[ [ ] ]' ,
   "motd" text NOT NULL DEFAULT 'Leírás',
-  "balance" bigINTEGER NOT NULL DEFAULT 0,
+  "balance" BIGINT NOT NULL DEFAULT 0,
   "aid" INTEGER NOT NULL DEFAULT 0,
   "tax" INTEGER NOT NULL DEFAULT 0
 );
@@ -519,8 +519,8 @@ CREATE TABLE "licenses" (
   "dbID" SERIAL,
   "characterId" INTEGER NOT NULL,
   "type" varchar(32) NOT NULL,
-  "issueDate" bigINTEGER NOT NULL DEFAULT 0,
-  "expiryDate" bigINTEGER NOT NULL DEFAULT 0,
+  "issueDate" BIGINT NOT NULL DEFAULT 0,
+  "expiryDate" BIGINT NOT NULL DEFAULT 0,
   "status" INTEGER NOT NULL DEFAULT 1,
   "points" INTEGER NOT NULL DEFAULT 0
 );
@@ -674,7 +674,7 @@ CREATE TABLE "peds" (
   "dimension" INTEGER NOT NULL,
   "skin" INTEGER NOT NULL,
   "name" varchar(32) NOT NULL DEFAULT 'PED',
-  "balance" bigINTEGER NOT NULL DEFAULT 0,
+  "balance" BIGINT NOT NULL DEFAULT 0,
   "selectedItems" TEXT NOT NULL,
   "categories" TEXT NOT NULL,
   "pedPrice" TEXT NOT NULL,
@@ -819,7 +819,7 @@ DROP TABLE IF EXISTS "priorities" CASCADE;
 CREATE TABLE "priorities" (
   "dbID" INTEGER NOT NULL,
   "prioType" INTEGER NOT NULL,
-  "expireTimestamp" bigINTEGER NOT NULL,
+  "expireTimestamp" BIGINT NOT NULL,
   "serial" varchar(32) NOT NULL
 );
 
@@ -879,7 +879,7 @@ CREATE TABLE "tickets" (
   "reason" text NOT NULL,
   "offenderId" INTEGER NOT NULL,
   "offenderName" text NOT NULL,
-  "ticketDate" bigINTEGER NOT NULL,
+  "ticketDate" BIGINT NOT NULL,
   "ticketBy" text NOT NULL,
   "ticketPlace" text NOT NULL,
   "ticketGroup" text NOT NULL
@@ -1018,7 +1018,7 @@ CREATE TABLE "vehicles" (
   "panelStates" TEXT  NOT NULL DEFAULT '[ [ 0, 0, 0, 0, 0, 0 ] ]' ,
   "plate" varchar(8) DEFAULT NULL,
   "customPlate" varchar(8) DEFAULT NULL,
-  "protected" bigINTEGER DEFAULT NULL,
+  "protected" BIGINT DEFAULT NULL,
   "fuelType" text DEFAULT NULL,
   "supercharger" INTEGER NOT NULL DEFAULT 0,
   "automaticShifter" INTEGER NOT NULL DEFAULT 0
@@ -1459,16 +1459,16 @@ INSERT INTO "characters" ("characterId", "accountId", "name", "skin", "permGroup
 --
 -- Dummy Vehicles (2 vehicles owned by characters)
 --
-INSERT INTO "vehicles" ("dbID", "model", "owner", "price", "position", "parkPosition", "rotation", "color", "engine", "ignition", "light", "handbrake", "fuel", "oil", "checkengine", "distance", "locked", "pulling", "inService", "impounded", "ecuValues", "balanceValue", "customEcuValues", "averageMultipler", "performanceTuning", "customBackfire", "backfire", "customTurbo", "nitro", "nitroLevel", "traffipaxRadar", "driveType", "customDriveType", "customHorn", "lsdDoor", "variant", "steeringLock", "offroadSetting", "abs", "paintjob", "currentTexture", "currentWheelTexture", "currentHeadlightTexture", "headlightColor", "wheelWidthFront", "wheelWidthRear", "spinner", "spinnerColor", "opticalTunings", "neon", "neonData", "airride", "airrideDatas", "airrideMemory", "wheelStates", "panelStates", "plate", "customPlate", "protected", "fuelType", "supercharger", "automaticShifter") VALUES
-(1, 411, 1, 50000, '[[1682.7, -2328.7, 13.5, 0, 0]]', '[[1682.7, -2328.7, 13.5, 0, 0]]', '[[0, 0, 0]]', '[[255, 0, 0, 255, 0, 0, 255, 255, 255, 255, 255, 255]]', 0, 0, 0, 1, 100, 1000, 0, 0, 1, 0, NULL, 0, '[[]]', 0, '[[]]', 0, '[{"tire": 0, "turbo": 0, "weightReduction": 0, "brakes": 0, "suspension": 0, "ecu": 0, "engine": 0, "transmission": 0}]', '[[]]', 0, '[[]]', 0, '[[]]', 0, 'handling', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ffffff', 0, 0, 0, '[[]]', '[[]]', NULL, '[[]]', NULL, '[[]]', '[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]', '[[0, 0, 0, 0]]', '[[0, 0, 0, 0, 0, 0]]', 'ADM1N01', NULL, NULL, 'petrol', 0, 0),
-(2, 562, 2, 35000, '[[1682.7, -2320.7, 13.5, 0, 0]]', '[[1682.7, -2320.7, 13.5, 0, 0]]', '[[0, 0, 0]]', '[[0, 0, 255, 0, 0, 255, 255, 255, 255, 255, 255, 255]]', 0, 0, 0, 1, 80, 1000, 0, 0, 1, 0, NULL, 0, '[[]]', 0, '[[]]', 0, '[{"tire": 0, "turbo": 0, "weightReduction": 0, "brakes": 0, "suspension": 0, "ecu": 0, "engine": 0, "transmission": 0}]', '[[]]', 0, '[[]]', 0, '[[]]', 0, 'handling', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ffffff', 0, 0, 0, '[[]]', '[[]]', NULL, '[[]]', NULL, '[[]]', '[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]', '[[0, 0, 0, 0]]', '[[0, 0, 0, 0, 0, 0]]', 'USR0001', NULL, NULL, 'petrol', 0, 0);
+INSERT INTO "vehicles" ("dbID", "characterId", "modelId", "health", "position", "parkPosition", "rotation", "color", "fuel", "oil", "locked", "plate") VALUES
+(1, 1, 411, 1000, '[[1682.7, -2328.7, 13.5, 0, 0]]', '[[1682.7, -2328.7, 13.5, 0, 0]]', '[[0, 0, 0]]', '[[255, 0, 0, 255, 0, 0, 255, 255, 255, 255, 255, 255]]', 100, 1000, 1, 'ADM1N01'),
+(2, 2, 562, 1000, '[[1682.7, -2320.7, 13.5, 0, 0]]', '[[1682.7, -2320.7, 13.5, 0, 0]]', '[[0, 0, 0]]', '[[0, 0, 255, 0, 0, 255, 255, 255, 255, 255, 255, 255]]', 80, 1000, 1, 'USR0001');
 
 --
 -- Dummy Interiors (2 properties owned by characters)
 --
-INSERT INTO "interiors" ("interiorId", "ownerId", "price", "ownerType", "type", "enterX", "enterY", "enterZ", "exitX", "exitY", "exitZ", "locked", "rentedBy", "renterName", "rentedUntil", "gameInterior", "entrance_rotation", "exit_rotation", "deleted", "policeLock", "policeLockBy", "policeLockGroup") VALUES
-(1, 1, 150000, 'char', 'house', 1682.7, -2328.7, 13.5, 2196.85, -1204.36, 1049.02, 0, 0, '', 0, 6, 0, 0, 'N', 'N', '', ''),
-(2, 2, 100000, 'char', 'house', 1682.7, -2320.7, 13.5, 2196.85, -1204.36, 1049.02, 0, 0, '', 0, 6, 0, 0, 'N', 'N', '', '');
+INSERT INTO "interiors" ("interiorId", "outside", "inside", "name", "type", "ownerType", "owner", "locked", "price", "gameInterior", "policeLock", "policeLockBy", "policeLockGroup") VALUES
+(1, '[[1682.7, -2328.7, 13.5, 0]]', '[[2196.85, -1204.36, 1049.02, 0]]', 'Admin House', 'house', 'player', '1', 0, 150000, 6, 'N', '', ''),
+(2, '[[1682.7, -2320.7, 13.5, 0]]', '[[2196.85, -1204.36, 1049.02, 0]]', 'User House', 'house', 'player', '2', 0, 100000, 6, 'N', '', '');
 
 --
 -- Dummy Items (basic inventory items for characters)
