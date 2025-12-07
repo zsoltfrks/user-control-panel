@@ -511,6 +511,28 @@ CREATE TABLE "items" (
 -- --------------------------------------------------------
 
 --
+-- Tábla szerkezet ehhez a táblához "licenses"
+--
+
+DROP TABLE IF EXISTS "licenses" CASCADE;
+CREATE TABLE "licenses" (
+  "dbID" SERIAL,
+  "characterId" INTEGER NOT NULL,
+  "type" varchar(32) NOT NULL,
+  "issueDate" bigINTEGER NOT NULL DEFAULT 0,
+  "expiryDate" bigINTEGER NOT NULL DEFAULT 0,
+  "status" INTEGER NOT NULL DEFAULT 1,
+  "points" INTEGER NOT NULL DEFAULT 0
+);
+
+--
+-- A tábla adatainak kiíratása "licenses"
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Tábla szerkezet ehhez a táblához "lifts"
 --
 
@@ -1386,11 +1408,6 @@ ALTER TABLE "vehicles"
 
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
 -- Sequence Restarts
 ALTER SEQUENCE "accounts_accountId_seq" RESTART WITH 29;
 ALTER SEQUENCE "animals_animalId_seq" RESTART WITH 9;
@@ -1421,3 +1438,62 @@ ALTER SEQUENCE "trashes_databaseId_seq" RESTART WITH 94;
 ALTER SEQUENCE "undoneprocesses_connect_id_seq" RESTART WITH 6;
 ALTER SEQUENCE "undoneprocesses_main_id_seq" RESTART WITH 6;
 ALTER SEQUENCE "vehicles_dbID_seq" RESTART WITH 10;
+-- ============================================================
+-- DUMMY DATA FOR TESTING
+-- ============================================================
+
+--
+-- Dummy Accounts (2 accounts: 1 Admin, 1 regular User)
+--
+INSERT INTO "accounts" ("accountId", "username", "password", "suspended", "serial", "email", "maxCharacters", "adminLevel", "adminNick", "helperLevel", "premiumPoints", "osvenyPiro", "osvenyPrioExperie", "2fa", "2fastate", "discordId", "discordAuth", "discordName", "adminJailType", "adminJailBy", "adminJailTime", "adminJailReason") VALUES
+(1, 'admin_user', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 0, 'ADMIN001', 'admin@example.com', 3, 10, 'SuperAdmin', 0, 1000, 0, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'test_user', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 0, 'USER001', 'user@example.com', 2, 0, 'User', 0, 100, 0, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+--
+-- Dummy Characters (1 for each account)
+--
+INSERT INTO "characters" ("characterId", "accountId", "name", "skin", "permGroupSkin", "creationStage", "canSkipCreation", "x", "y", "z", "r", "interior", "dimension", "money", "bankMoney", "playedMinutes", "inDeath", "coins", "boughtClothes", "clothesPos", "clothesLimit", "health", "armor", "hunger", "thirst", "lastOnline", "actionBarItems", "skills", "weaponPos", "armors", "inDuty", "online", "vehiclesSlot", "interiorsSlot", "facePaint", "playerRecipes", "radioFreq", "jail", "jailTime", "jailReason", "jailCell") VALUES
+(1, 1, 'John Admin', 0, 'N', 5, 0, 1682.7392578125, -2328.7177734375, 13.546875, 0, 0, 0, 100000, 50000, 120, 0, 500, '[[]]', '''[[]]''', 5, 100, 100, 100, 100, CURRENT_TIMESTAMP, '[[1,2,3,4,5]]', '[[]]', '[[]]', '[[]]', '""', 0, 5, 5, 0, '[[]]', '[[0, 0]]', 0, 0, NULL, 0),
+(2, 2, 'Jane Player', 1, 'N', 5, 0, 1682.7392578125, -2328.7177734375, 13.546875, 0, 0, 0, 50000, 10000, 60, 0, 50, '[[]]', '''[[]]''', 2, 100, 0, 100, 100, CURRENT_TIMESTAMP, '[[1,2,3,4,5]]', '[[]]', '[[]]', '[[]]', '""', 0, 2, 2, 0, '[[]]', '[[0, 0]]', 0, 0, NULL, 0);
+
+--
+-- Dummy Vehicles (2 vehicles owned by characters)
+--
+INSERT INTO "vehicles" ("dbID", "model", "owner", "price", "position", "parkPosition", "rotation", "color", "engine", "ignition", "light", "handbrake", "fuel", "oil", "checkengine", "distance", "locked", "pulling", "inService", "impounded", "ecuValues", "balanceValue", "customEcuValues", "averageMultipler", "performanceTuning", "customBackfire", "backfire", "customTurbo", "nitro", "nitroLevel", "traffipaxRadar", "driveType", "customDriveType", "customHorn", "lsdDoor", "variant", "steeringLock", "offroadSetting", "abs", "paintjob", "currentTexture", "currentWheelTexture", "currentHeadlightTexture", "headlightColor", "wheelWidthFront", "wheelWidthRear", "spinner", "spinnerColor", "opticalTunings", "neon", "neonData", "airride", "airrideDatas", "airrideMemory", "wheelStates", "panelStates", "plate", "customPlate", "protected", "fuelType", "supercharger", "automaticShifter") VALUES
+(1, 411, 1, 50000, '[[1682.7, -2328.7, 13.5, 0, 0]]', '[[1682.7, -2328.7, 13.5, 0, 0]]', '[[0, 0, 0]]', '[[255, 0, 0, 255, 0, 0, 255, 255, 255, 255, 255, 255]]', 0, 0, 0, 1, 100, 1000, 0, 0, 1, 0, NULL, 0, '[[]]', 0, '[[]]', 0, '[{"tire": 0, "turbo": 0, "weightReduction": 0, "brakes": 0, "suspension": 0, "ecu": 0, "engine": 0, "transmission": 0}]', '[[]]', 0, '[[]]', 0, '[[]]', 0, 'handling', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ffffff', 0, 0, 0, '[[]]', '[[]]', NULL, '[[]]', NULL, '[[]]', '[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]', '[[0, 0, 0, 0]]', '[[0, 0, 0, 0, 0, 0]]', 'ADM1N01', NULL, NULL, 'petrol', 0, 0),
+(2, 562, 2, 35000, '[[1682.7, -2320.7, 13.5, 0, 0]]', '[[1682.7, -2320.7, 13.5, 0, 0]]', '[[0, 0, 0]]', '[[0, 0, 255, 0, 0, 255, 255, 255, 255, 255, 255, 255]]', 0, 0, 0, 1, 80, 1000, 0, 0, 1, 0, NULL, 0, '[[]]', 0, '[[]]', 0, '[{"tire": 0, "turbo": 0, "weightReduction": 0, "brakes": 0, "suspension": 0, "ecu": 0, "engine": 0, "transmission": 0}]', '[[]]', 0, '[[]]', 0, '[[]]', 0, 'handling', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ffffff', 0, 0, 0, '[[]]', '[[]]', NULL, '[[]]', NULL, '[[]]', '[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]', '[[0, 0, 0, 0]]', '[[0, 0, 0, 0, 0, 0]]', 'USR0001', NULL, NULL, 'petrol', 0, 0);
+
+--
+-- Dummy Interiors (2 properties owned by characters)
+--
+INSERT INTO "interiors" ("interiorId", "ownerId", "price", "ownerType", "type", "enterX", "enterY", "enterZ", "exitX", "exitY", "exitZ", "locked", "rentedBy", "renterName", "rentedUntil", "gameInterior", "entrance_rotation", "exit_rotation", "deleted", "policeLock", "policeLockBy", "policeLockGroup") VALUES
+(1, 1, 150000, 'char', 'house', 1682.7, -2328.7, 13.5, 2196.85, -1204.36, 1049.02, 0, 0, '', 0, 6, 0, 0, 'N', 'N', '', ''),
+(2, 2, 100000, 'char', 'house', 1682.7, -2320.7, 13.5, 2196.85, -1204.36, 1049.02, 0, 0, '', 0, 6, 0, 0, 'N', 'N', '', '');
+
+--
+-- Dummy Items (basic inventory items for characters)
+--
+INSERT INTO "items" ("dbID", "slot", "itemId", "amount", "data1", "data2", "data3", "nameTag", "serial", "ownerType", "ownerId") VALUES
+(1, 1, 1, 1, NULL, NULL, NULL, 'Phone', 1001, 'character', 1),
+(2, 2, 2, 1, NULL, NULL, NULL, 'Wallet', 1002, 'character', 1),
+(3, 3, 10, 5, NULL, NULL, NULL, 'Sandwich', 1003, 'character', 1),
+(4, 4, 11, 3, NULL, NULL, NULL, 'Water Bottle', 1004, 'character', 1),
+(5, 1, 1, 1, NULL, NULL, NULL, 'Phone', 2001, 'character', 2),
+(6, 2, 2, 1, NULL, NULL, NULL, 'Wallet', 2002, 'character', 2),
+(7, 3, 10, 2, NULL, NULL, NULL, 'Sandwich', 2003, 'character', 2),
+(8, 4, 11, 2, NULL, NULL, NULL, 'Water Bottle', 2004, 'character', 2);
+
+--
+-- Dummy Licenses (driver licenses for characters)
+--
+INSERT INTO "licenses" ("dbID", "characterId", "type", "issueDate", "expiryDate", "status", "points") VALUES
+(1, 1, 'driver', 1609459200, 1767225600, 1, 0),
+(2, 2, 'driver', 1609459200, 1767225600, 1, 0);
+
+-- Update sequence values to account for dummy data
+ALTER SEQUENCE "accounts_accountId_seq" RESTART WITH 3;
+ALTER SEQUENCE "characters_characterId_seq" RESTART WITH 3;
+ALTER SEQUENCE "vehicles_dbID_seq" RESTART WITH 3;
+ALTER SEQUENCE "interiors_interiorId_seq" RESTART WITH 3;
+ALTER SEQUENCE "items_dbID_seq" RESTART WITH 9;
+ALTER SEQUENCE "licenses_dbID_seq" RESTART WITH 3;
